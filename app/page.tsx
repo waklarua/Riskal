@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Calculator, RotateCcw, MoreVertical, ChevronDown, ChevronUp, Info, Shield, TrendingUp } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Footer } from "@/components/footer"
 
 export default function PositionSizeCalculator() {
   const [assetClass] = useState("Cryptocurrency")
@@ -655,6 +656,7 @@ export default function PositionSizeCalculator() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
