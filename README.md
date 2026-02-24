@@ -6,7 +6,7 @@ A professional-grade cryptocurrency trading calculator that helps traders determ
 
 Riskal is a web-based position size calculator designed for cryptocurrency traders who need to quickly calculate position sizes based on their account balance, risk tolerance, and entry/exit points. The application provides real-time calculations, comprehensive risk metrics, and works offline as a Progressive Web App (PWA).
 
-**Live Demo**: Deploy to Vercel and access via your Vercel URL
+**URL**: https://riskal.vercel.app/
 
 ## Key Features
 
@@ -201,29 +201,6 @@ riskal/
 - Safari 14+
 - Mobile browsers (iOS Safari, Chrome Mobile)
 
-## Deployment
-
-### Deploy to Vercel (Recommended)
-
-1. Push code to GitHub
-2. Go to [vercel.com](https://vercel.com)
-3. Click "Add New" → "Project"
-4. Import your GitHub repository
-5. Click "Deploy"
-
-Vercel automatically handles:
-- Automatic deployments on git push
-- HTTPS certificates
-- Global CDN
-- Serverless functions (if needed)
-
-### Transfer to Different Vercel Account
-
-1. Download project: Click menu → "Download ZIP"
-2. Push to GitHub
-3. Login to new Vercel account
-4. Import repository and deploy
-
 ## Environment Variables
 
 Currently, Riskal doesn't require environment variables. If you plan to add features like analytics or error tracking, add them in Vercel's project settings:
@@ -267,7 +244,7 @@ This project is open source and available under the MIT License. See LICENSE fil
 
 For issues, feature requests, or questions:
 - Open an issue on GitHub
-- Contact: support@riskal.app (when available)
+- Contact: support@riskal.app (maybe soon?)
 
 ## Disclaimer
 
@@ -277,4 +254,4 @@ Riskal is a calculation tool for educational and planning purposes. Always condu
 
 **Version**: 1.0.0  
 **Last Updated**: February 2026  
-**Maintainer**: Your Name
+**Maintainer**: Waklarua
