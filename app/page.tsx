@@ -47,12 +47,15 @@ export default function PositionSizeCalculator() {
 
   useEffect(() => {
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker
-        .register("/sw.js")
-        .then((registration) => {
-          registration.update()
-        })
-        .catch(() => {})
+      // Unregister all existing service workers and clear caches to prevent stale HTML
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        registrations.forEach((registration) => registration.unregister())
+      })
+      caches.keys().then((names) => {
+        names.forEach((name) => caches.delete(name))
+      })
+      // Register fresh service worker
+      navigator.serviceWorker.register("/sw.js").catch(() => {})
     }
   }, [])
 
@@ -255,14 +258,21 @@ export default function PositionSizeCalculator() {
       <div className="flex-1 max-w-7xl w-full mx-auto px-4 py-5 md:p-8">
         {/* Header */}
         <header className="mb-5 md:mb-8">
-          <div className="flex items-center justify-between gap-4 mb-2 md:mb-1">
-            <div className="flex items-center gap-2 md:gap-3">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2.5 md:gap-3 min-w-0">
               <div className="flex items-center justify-center w-8 h-8 md:w-9 md:h-9 rounded-lg bg-[#3b82f6]/10 border border-[#3b82f6]/20 shrink-0">
                 <Calculator className="w-4 h-4 md:w-5 md:h-5 text-[#3b82f6]" />
               </div>
-              <h1 className="text-lg md:text-3xl font-bold text-[#f3f4f6]">Riskal</h1>
-              <span className="hidden md:inline text-[#374151]">|</span>
-              <h2 className="hidden md:block text-xl font-medium text-[#9ca3af]">Position Size Calculator</h2>
+              <div className="min-w-0">
+                <div className="flex items-baseline gap-2 md:gap-2.5">
+                  <h1 className="text-lg md:text-2xl font-bold text-[#f3f4f6] leading-tight">Riskal</h1>
+                  <span className="hidden md:inline text-[#374151]/60 text-sm font-light">/</span>
+                  <h2 className="hidden md:inline text-base font-normal text-[#9ca3af] leading-tight">Position Size Calculator</h2>
+                </div>
+                <p className="text-[11px] md:text-xs text-[#6b7280] mt-0.5 leading-snug">
+                  Calculate your optimal position size in seconds
+                </p>
+              </div>
             </div>
             <Button
               className="bg-[#ef4444]/10 hover:bg-[#ef4444]/20 border border-[#ef4444]/30 text-[#f87171] hover:text-[#fca5a5] shrink-0 h-8 md:h-10 px-3 md:px-4 rounded-lg transition-all duration-200"
@@ -272,7 +282,6 @@ export default function PositionSizeCalculator() {
               <span className="text-xs md:text-sm font-medium">Reset</span>
             </Button>
           </div>
-          <p className="text-xs md:text-sm text-[#6b7280] ml-10 md:ml-12">Calculate your optimal position size in seconds</p>
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
