@@ -46,10 +46,10 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="w-full mt-16">
+    <footer className="w-full mt-10 md:mt-16">
       <div className="w-full border-t border-[#374151]/60" />
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-10">
-        <div className="flex flex-col items-center gap-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 md:py-10">
+        <div className="flex flex-col items-center gap-5 md:gap-8">
           {/* Brand */}
           <div className="flex flex-col items-center gap-3">
             <div className="flex items-center gap-2.5">

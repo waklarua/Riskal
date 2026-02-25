@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Calculator, RotateCcw, MoreVertical, ChevronDown, ChevronUp, Info, Shield, TrendingUp } from "lucide-react"
+import { Calculator, RotateCcw, ChevronDown, ChevronUp, Info, Shield, TrendingUp } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Footer } from "@/components/footer"
 
@@ -253,35 +253,33 @@ export default function PositionSizeCalculator() {
   }
 
   return (
-    <div className="min-h-screen bg-[#121c31] text-white p-4 md:p-8">
+    <div className="min-h-svh bg-[#121c31] text-white px-3 py-4 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <div className="flex items-center gap-3 mb-2">
-                <Calculator className="w-6 h-6" />
-                <h1 className="text-3xl font-bold text-[#3b82f6]">Riskal</h1>
-                <span className="text-gray-500">|</span>
-                <h2 className="text-2xl font-semibold text-[#f3f4f6]">Position Size Calculator</h2>
+        <header className="mb-6 md:mb-8">
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 md:gap-3 mb-1">
+                <Calculator className="w-5 h-5 md:w-6 md:h-6 shrink-0 text-[#3b82f6]" />
+                <h1 className="text-xl md:text-3xl font-bold text-[#3b82f6] truncate">Riskal</h1>
+                <span className="hidden md:inline text-gray-500">|</span>
+                <h2 className="hidden md:block text-2xl font-semibold text-[#f3f4f6]">Position Size Calculator</h2>
               </div>
-              <p className="text-gray-400">Calculate your optimal position size in seconds</p>
+              <p className="text-xs md:text-sm text-gray-400 ml-7 md:ml-9">Calculate your optimal position size in seconds</p>
             </div>
-            <div className="flex gap-2">
-              <Button className="bg-red-600 hover:bg-red-700" onClick={handleReset}>
-                <RotateCcw className="w-4 h-4 mr-2" />
-                Reset
-              </Button>
-              <Button variant="ghost" size="icon">
-                <MoreVertical className="w-4 h-4" />
-              </Button>
-            </div>
+            <Button
+              className="bg-[#1f2937] hover:bg-[#374151] border border-[#374151] text-[#d1d5db] shrink-0 h-9 md:h-10 px-3 md:px-4"
+              onClick={handleReset}
+            >
+              <RotateCcw className="w-3.5 h-3.5 md:w-4 md:h-4 mr-1.5 md:mr-2" />
+              <span className="text-xs md:text-sm">Reset</span>
+            </Button>
           </div>
-        </div>
+        </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Left Panel - Inputs */}
-          <div className="bg-[#121c31] border border-[#374151] rounded-lg p-6 space-y-6">
+          <div className="bg-[#121c31] border border-[#374151] rounded-lg p-4 md:p-6 space-y-4 md:space-y-6">
             <div>
               <Label className="text-[#e5e7eb] mb-2 block">Asset Class</Label>
               <div className="bg-[#1f2937] border border-[#374151] rounded-md px-3 py-2 text-white">{assetClass}</div>
