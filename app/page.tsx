@@ -46,14 +46,14 @@ export default function PositionSizeCalculator() {
   const [breakEven, setBreakEven] = useState(0)
 
   useEffect(() => {
-    if ("serviceWorker" in navigator) {
+    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
       navigator.serviceWorker
         .register("/sw.js")
         .then((registration) => {
-          console.log("[v0] Service Worker registered:", registration.scope)
+          console.log("Service Worker registered:", registration.scope)
         })
         .catch((error) => {
-          console.log("[v0] Service Worker registration failed:", error)
+          console.log("Service Worker registration failed:", error)
         })
     }
   }, [])
@@ -253,33 +253,33 @@ export default function PositionSizeCalculator() {
   }
 
   return (
-    <div className="min-h-svh bg-[#121c31] text-white px-3 py-4 md:p-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="flex flex-col min-h-svh bg-[#121c31] text-white">
+      <div className="flex-1 max-w-7xl w-full mx-auto px-4 py-5 md:p-8">
         {/* Header */}
-        <header className="mb-6 md:mb-8">
-          <div className="flex items-start justify-between gap-3">
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 md:gap-3 mb-1">
-                <Calculator className="w-5 h-5 md:w-6 md:h-6 shrink-0 text-[#3b82f6]" />
-                <h1 className="text-xl md:text-3xl font-bold text-[#3b82f6] truncate">Riskal</h1>
-                <span className="hidden md:inline text-gray-500">|</span>
-                <h2 className="hidden md:block text-2xl font-semibold text-[#f3f4f6]">Position Size Calculator</h2>
+        <header className="mb-5 md:mb-8">
+          <div className="flex items-center justify-between gap-4 mb-2 md:mb-1">
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="flex items-center justify-center w-8 h-8 md:w-9 md:h-9 rounded-lg bg-[#3b82f6]/10 border border-[#3b82f6]/20 shrink-0">
+                <Calculator className="w-4 h-4 md:w-5 md:h-5 text-[#3b82f6]" />
               </div>
-              <p className="text-xs md:text-sm text-gray-400 ml-7 md:ml-9">Calculate your optimal position size in seconds</p>
+              <h1 className="text-lg md:text-3xl font-bold text-[#f3f4f6]">Riskal</h1>
+              <span className="hidden md:inline text-[#374151]">|</span>
+              <h2 className="hidden md:block text-xl font-medium text-[#9ca3af]">Position Size Calculator</h2>
             </div>
             <Button
-              className="bg-[#1f2937] hover:bg-[#374151] border border-[#374151] text-[#d1d5db] shrink-0 h-9 md:h-10 px-3 md:px-4"
+              className="bg-[#ef4444]/10 hover:bg-[#ef4444]/20 border border-[#ef4444]/30 text-[#f87171] hover:text-[#fca5a5] shrink-0 h-8 md:h-10 px-3 md:px-4 rounded-lg transition-all duration-200"
               onClick={handleReset}
             >
-              <RotateCcw className="w-3.5 h-3.5 md:w-4 md:h-4 mr-1.5 md:mr-2" />
-              <span className="text-xs md:text-sm">Reset</span>
+              <RotateCcw className="w-3.5 h-3.5 md:w-4 md:h-4 mr-1.5" />
+              <span className="text-xs md:text-sm font-medium">Reset</span>
             </Button>
           </div>
+          <p className="text-xs md:text-sm text-[#6b7280] ml-10 md:ml-12">Calculate your optimal position size in seconds</p>
         </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           {/* Left Panel - Inputs */}
-          <div className="bg-[#121c31] border border-[#374151] rounded-lg p-4 md:p-6 space-y-4 md:space-y-6">
+          <div className="bg-[#0d1626] border border-[#374151]/60 rounded-xl p-4 md:p-6 space-y-4 md:space-y-5">
             <div>
               <Label className="text-[#e5e7eb] mb-2 block">Asset Class</Label>
               <div className="bg-[#1f2937] border border-[#374151] rounded-md px-3 py-2 text-white">{assetClass}</div>
@@ -416,10 +416,10 @@ export default function PositionSizeCalculator() {
               />
             </div>
 
-            <div className="bg-[#121c31] border border-[#374151] rounded-lg p-4">
+            <div className="bg-[#0d1626] border border-[#374151]/60 rounded-xl p-4">
               <button
                 onClick={() => setShowAdvanced(!showAdvanced)}
-                className="flex items-center justify-between w-full text-white hover:text-gray-300"
+                className="flex items-center justify-between w-full text-white hover:text-[#d1d5db] transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <Shield className="w-4 h-4" />
@@ -504,29 +504,29 @@ export default function PositionSizeCalculator() {
           </div>
 
           {/* Right Panel - Results */}
-          <div className="space-y-6">
-            <div className="bg-[rgba(37,99,235,0.1)] border border-[rgba(37,99,235,0.3)] rounded-lg p-6 text-center">
-              <div className="text-xs text-gray-400 uppercase tracking-wider mb-2">Position Size</div>
-              <div className="text-4xl font-extrabold text-white mb-1">
+          <div className="space-y-4 md:space-y-6">
+            <div className="bg-[rgba(37,99,235,0.08)] border border-[rgba(37,99,235,0.25)] rounded-xl p-4 md:p-6 text-center">
+              <div className="text-[10px] md:text-xs text-[#6b7280] uppercase tracking-wider mb-1.5">Position Size</div>
+              <div className="text-2xl md:text-4xl font-extrabold text-white mb-1">
                 {positionSize > 0 ? `${positionSize.toFixed(6)} coins` : "-- coins"}
               </div>
-              <div className="text-sm text-gray-400">
+              <div className="text-xs md:text-sm text-[#6b7280]">
                 {totalValue > 0 ? `Total $USD Value: $${totalValue.toFixed(2)}` : "Total $USD Value: $ --"}
               </div>
             </div>
 
-            <div className="bg-[rgba(16,185,129,0.1)] border border-[rgba(16,185,129,0.3)] rounded-lg p-5 text-center">
-              <div className="text-xs text-gray-400 uppercase tracking-wider mb-2 font-semibold">Required Margin</div>
-              <div className="text-3xl font-extrabold text-green-500 mb-1">
+            <div className="bg-[rgba(16,185,129,0.08)] border border-[rgba(16,185,129,0.25)] rounded-xl p-4 md:p-5 text-center">
+              <div className="text-[10px] md:text-xs text-[#6b7280] uppercase tracking-wider mb-1.5 font-semibold">Required Margin</div>
+              <div className="text-xl md:text-3xl font-extrabold text-[#10b981] mb-1">
                 {requiredMargin > 0 ? `$${requiredMargin.toFixed(2)}` : "$ --"}
               </div>
-              <div className="text-sm text-gray-400 font-semibold">with {leverage}X Leverage</div>
+              <div className="text-xs md:text-sm text-[#6b7280] font-semibold">with {leverage}X Leverage</div>
             </div>
 
-            <div className="bg-[#121c31] border border-[#374151] rounded-lg p-6">
-              <div className="space-y-3 text-sm">
+            <div className="bg-[#0d1626] border border-[#374151]/60 rounded-xl p-4 md:p-6">
+              <div className="space-y-2.5 md:space-y-3 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Risk Amount:</span>
+                  <span className="text-[#6b7280]">Risk Amount:</span>
                   <span className="text-red-500 font-semibold">
                     {riskAmount > 0 ? `$${riskAmount.toFixed(2)}` : "$ --"}
                   </span>
@@ -549,7 +549,7 @@ export default function PositionSizeCalculator() {
             </div>
 
             {/* Risk Breakdown */}
-            <div className="bg-[#121c31] border border-[#374151] rounded-lg p-6">
+            <div className="bg-[#0d1626] border border-[#374151]/60 rounded-xl p-4 md:p-6">
               <div className="flex items-center gap-2 mb-4">
                 <Shield className="w-4 h-4" />
                 <h3 className="font-semibold text-[#f3f4f6]">RISK BREAKDOWN</h3>
@@ -598,7 +598,7 @@ export default function PositionSizeCalculator() {
             </div>
 
             {/* Risk Metrics */}
-            <div className="bg-[#121c31] border border-[#374151] rounded-lg p-6">
+            <div className="bg-[#0d1626] border border-[#374151]/60 rounded-xl p-4 md:p-6">
               <div className="flex items-center gap-2 mb-4">
                 <TrendingUp className="w-4 h-4" />
                 <h3 className="font-semibold text-[#f3f4f6]">Risk Metrics</h3>
@@ -618,7 +618,7 @@ export default function PositionSizeCalculator() {
             </div>
 
             {showAdvanced && addTakeProfit && (
-              <div className="bg-[#121c31] border border-[#374151] rounded-lg p-6">
+              <div className="bg-[#0d1626] border border-[#374151]/60 rounded-xl p-4 md:p-6">
                 <div className="text-gray-400 text-xs uppercase tracking-wider mb-3 text-center">Risk-Reward Ratio</div>
                 <div className="text-4xl font-bold text-white text-center mb-4">
                   {rrRatio !== "0:0" ? rrRatio : "0:0"}
@@ -631,7 +631,7 @@ export default function PositionSizeCalculator() {
             )}
 
             {showAdvanced && includeFees && (
-              <div className="bg-[#121c31] border border-[#374151] rounded-lg p-6">
+              <div className="bg-[#0d1626] border border-[#374151]/60 rounded-xl p-4 md:p-6">
                 <div className="text-gray-400 text-xs uppercase tracking-wider mb-4 text-center">
                   After Trading Costs
                 </div>
@@ -658,3 +658,4 @@ export default function PositionSizeCalculator() {
     </div>
   )
 }
+
