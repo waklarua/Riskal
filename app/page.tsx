@@ -46,15 +46,13 @@ export default function PositionSizeCalculator() {
   const [breakEven, setBreakEven] = useState(0)
 
   useEffect(() => {
-    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+    if ("serviceWorker" in navigator) {
       navigator.serviceWorker
         .register("/sw.js")
         .then((registration) => {
-          console.log("Service Worker registered:", registration.scope)
+          registration.update()
         })
-        .catch((error) => {
-          console.log("Service Worker registration failed:", error)
-        })
+        .catch(() => {})
     }
   }, [])
 
