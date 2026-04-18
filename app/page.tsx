@@ -344,7 +344,7 @@ export default function PositionSizeCalculator() {
               <div className="text-xl md:text-3xl font-extrabold text-success mb-1">
                 {requiredMargin > 0 ? `$${requiredMargin.toFixed(2)}` : "$ --"}
               </div>
-              <div className="text-xs md:text-sm text-muted-foreground font-semibold">{Number.parseFloat(leverage) || 1}X Leverage</div>
+              <div className="text-xs md:text-sm text-muted-foreground font-semibold">With {Number.parseFloat(leverage) || 1}X Leverage</div>
             </div>
 
             <div className="bg-card border border-border/60 rounded-xl p-4 md:p-6">
