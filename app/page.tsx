@@ -236,7 +236,7 @@ export default function PositionSizeCalculator() {
                 onChange={(e) => updateInput("leverage", e.target.value)}
                 onWheel={preventScrollChange}
                 className="bg-input border-border text-foreground placeholder:text-[#848992]"
-                placeholder="20"
+                placeholder="1"
               />
             </div>
 
@@ -344,7 +344,7 @@ export default function PositionSizeCalculator() {
               <div className="text-xl md:text-3xl font-extrabold text-success mb-1">
                 {requiredMargin > 0 ? `$${requiredMargin.toFixed(2)}` : "$ --"}
               </div>
-              <div className="text-xs md:text-sm text-muted-foreground font-semibold">with {leverage}X Leverage</div>
+              <div className="text-xs md:text-sm text-muted-foreground font-semibold">{Number.parseFloat(leverage) || 1}X Leverage</div>
             </div>
 
             <div className="bg-card border border-border/60 rounded-xl p-4 md:p-6">
