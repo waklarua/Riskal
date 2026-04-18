@@ -1,5 +1,5 @@
 // Service Worker for Riskal PWA
-const CACHE_NAME = "riskal-v2"
+const CACHE_NAME = "riskal-v3"
 const STATIC_ASSETS = ["/manifest.json", "/icon-192x192.jpg", "/icon-512x512.jpg"]
 
 // Install event - cache static assets only (not HTML pages)
